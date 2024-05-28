@@ -1,2 +1,2 @@
 FROM nginx:latest
-COPY V4-Pac-Man-VersionFinal/* /usr/share/nginx/html
+COPY V4-Pac-Man-VersionFinal/ /usr/share/nginx/html
