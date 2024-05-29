@@ -11,11 +11,11 @@ Este repositorio alberga el código fuente del proyecto Pac-Man, una emocionante
 - HTML
 - CSS
 - JavaScript
-- Programación Orientada a Objetos en JavaScript (PDOO)
+- Programación Orientada a Objetos (PDOO) en JavaScript
 - Implementación de recursividad
 - Docker para contenerización
-- Servidor web Nginx
 - Implementación continua y entrega continua (CI/CD) con GitHub Actions
+- Proxy inverso Nginx
 - Uso de EC2 de AWS para alojamiento
 
 ## Descripción
@@ -41,3 +41,7 @@ Pac-Man: Escape a Través de Portales es más que un simple juego; es una emocio
 ## Autor
 
 - Desarrollador: [Carlos Maroto](https://github.com/carlosmaroto-daweb)
+
+## Mi web
+
+¿Quieres ver más proyectos? Visita mi página web [aquí](https://www.carlosmaroto-daweb.com).
