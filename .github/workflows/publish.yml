@@ -9,7 +9,7 @@ on:
 env:
   DOCKER_IMAGE: pac-man:latest
   DOCKER_CONTAINER: web_pac-man
-  PORT: 8001
+  PORT: 8000
   NGINX_LOCATION: /pac-man/
   NGINX_CONF_FILE: /etc/nginx/sites-available/default
 
