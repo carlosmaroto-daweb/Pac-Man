@@ -1,4 +1,4 @@
-# Pac-Man
+# Pac-Man 
 
 Este repositorio alberga el código fuente del proyecto Pac-Man, una emocionante aventura inspirada en el clásico juego de Pac-Man pero con un giro único. Sumérgete en la diversión mientras intentas escapar de los fantasmas y llegar a la salida a través de portales en tres desafiantes niveles.
 
