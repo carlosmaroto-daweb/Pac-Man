@@ -7,7 +7,6 @@ on:
     branches: ["main"]
 
 env:
-  EMAIL: carlosmaroto.daweb@gmail.com
   DOCKER_IMAGE: pac-man:latest
   DOCKER_CONTAINER: web_pac-man
   PORT: 8000
@@ -54,7 +53,7 @@ jobs:
               sudo touch /etc/nginx/sites-available/$SUBDOMAIN
               sudo ln -s /etc/nginx/sites-available/$SUBDOMAIN /etc/nginx/sites-enabled/$SUBDOMAIN
               sudo systemctl stop nginx
-              sudo certbot certonly --standalone -d $SUBDOMAIN --non-interactive --agree-tos --email $EMAIL
+              sudo certbot certonly --standalone -d $SUBDOMAIN --non-interactive --agree-tos --email carlosmaroto.daweb@gmail.com
             fi
             sudo echo '
               server {
@@ -72,6 +71,7 @@ jobs:
                   proxy_set_header X-Forwarded-Proto \$scheme;
                 }
               }
-            ' > /etc/nginx/sites-available/$SUBDOMAIN
+            ' > /tmp/nginx_site_config
+            sudo mv /tmp/nginx_site_config /etc/nginx/sites-available/$SUBDOMAIN
             sudo systemctl start nginx
           EOF
