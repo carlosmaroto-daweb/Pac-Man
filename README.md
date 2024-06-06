@@ -4,7 +4,7 @@ Este repositorio alberga el código fuente del proyecto Pac-Man, una emocionante
 
 ## Demostración
 
-¡Juega al Pac-Man en línea ahora mismo! Visita la demostración en vivo del juego [aquí](https://www.carlosmaroto-daweb.com/pac-man/).
+¡Juega al Pac-Man en línea ahora mismo! Visita la demostración en vivo del juego [aquí](https://pac-man.carlosmaroto-daweb.com).
 
 ## Tecnologías Utilizadas
 

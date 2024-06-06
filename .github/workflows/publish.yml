@@ -53,7 +53,7 @@ jobs:
             if [ ! -f /etc/nginx/sites-available/$SUBDOMAIN ]; then
               sudo touch /etc/nginx/sites-available/$SUBDOMAIN
               sudo ln -s /etc/nginx/sites-available/$SUBDOMAIN /etc/nginx/sites-enabled/$SUBDOMAIN
-              sudo certbot certonly --standalone -d $SUBDOMAIN --non-interactive --agree-tos --email carlosmaroto.daweb@gmail.com
+              sudo certbot certonly --standalone -d $SUBDOMAIN --cert-name $SUBDOMAIN --non-interactive --agree-tos --email carlosmaroto.daweb@gmail.com
             fi
             sudo echo '
             server {
