@@ -7,11 +7,11 @@ on:
     branches: ["main"]
 
 env:
+  EMAIL: carlosmaroto.daweb@gmail.com
   DOCKER_IMAGE: pac-man:latest
   DOCKER_CONTAINER: web_pac-man
   PORT: 8000
-  NGINX_LOCATION: /pac-man/
-  NGINX_CONF_FILE: /etc/nginx/sites-available/default
+  SUBDOMAIN: pac-man.carlosmaroto-daweb.com
 
 jobs:
   create-docker-image:
@@ -50,5 +50,25 @@ jobs:
               --restart always \
               ghcr.io/carlosmaroto-daweb/$DOCKER_IMAGE
             sudo docker stop $DOCKER_CONTAINER
-            sudo bash update_nginx_config.sh $NGINX_LOCATION $NGINX_CONF_FILE $PORT
+            if [ ! -f /etc/nginx/sites-available/$SUBDOMAIN ]; then
+              sudo touch /etc/nginx/sites-available/$SUBDOMAIN
+              sudo ln -s /etc/nginx/sites-available/$SUBDOMAIN /etc/nginx/sites-enabled/$SUBDOMAIN
+              sudo certbot certonly --standalone -d $SUBDOMAIN --non-interactive --agree-tos --email $EMAIL
+            fi
+            sudo echo "server {
+              listen 443 ssl;
+              server_name $SUBDOMAIN;
+
+              ssl_certificate /etc/letsencrypt/live/$SUBDOMAIN/fullchain.pem;
+              ssl_certificate_key /etc/letsencrypt/live/$SUBDOMAIN/privkey.pem;
+
+              location / {
+                proxy_pass http://localhost:$PORT;
+                proxy_set_header Host \$host;
+                proxy_set_header X-Real-IP \$remote_addr;
+                proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto \$scheme;
+              }
+            }" >> /etc/nginx/sites-available/$SUBDOMAIN
+            sudo systemctl reload nginx
           EOF
