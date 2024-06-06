@@ -55,22 +55,21 @@ jobs:
               sudo systemctl stop nginx
               sudo certbot certonly --standalone -d $SUBDOMAIN --non-interactive --agree-tos --email carlosmaroto.daweb@gmail.com
             fi
-            sudo echo '
-              server {
-                listen 443 ssl;
-                server_name $SUBDOMAIN;
+            sudo echo 'server {
+              listen 443 ssl;
+              server_name $SUBDOMAIN;
 
-                ssl_certificate /etc/letsencrypt/live/$SUBDOMAIN/fullchain.pem;
-                ssl_certificate_key /etc/letsencrypt/live/$SUBDOMAIN/privkey.pem;
+              ssl_certificate /etc/letsencrypt/live/$SUBDOMAIN/fullchain.pem;
+              ssl_certificate_key /etc/letsencrypt/live/$SUBDOMAIN/privkey.pem;
 
-                location / {
-                  proxy_pass http://localhost:$PORT;
-                  proxy_set_header Host \$host;
-                  proxy_set_header X-Real-IP \$remote_addr;
-                  proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
-                  proxy_set_header X-Forwarded-Proto \$scheme;
-                }
+              location / {
+                proxy_pass http://localhost:$PORT;
+                proxy_set_header Host \$host;
+                proxy_set_header X-Real-IP \$remote_addr;
+                proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto \$scheme;
               }
+            }
             ' > /tmp/nginx_site_config
             sudo mv /tmp/nginx_site_config /etc/nginx/sites-available/$SUBDOMAIN
             sudo systemctl start nginx
