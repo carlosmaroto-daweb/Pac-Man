@@ -71,5 +71,5 @@ jobs:
                 proxy_set_header X-Forwarded-Proto \$scheme;
               }
             }' > /etc/nginx/sites-available/$SUBDOMAIN
-            sudo systemctl reload nginx
+            sudo systemctl start nginx
           EOF
